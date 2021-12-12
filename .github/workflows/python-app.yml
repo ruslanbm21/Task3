@@ -1,4 +1,4 @@
-name: Python application
+name: Expected exam outcome
 
 on:
   push:

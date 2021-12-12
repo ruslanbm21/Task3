@@ -21,7 +21,7 @@ def test_mul():
     assert mul([De(str(10 ** 1000000))]) == De('Inf')
     assert mul([De(str(-3)), De(str(7.5)), De(str(11)), De(str(14)), De(str(2.127)), De(str(0.64))]) == De('-4716.8352')
     assert mul([De(str(5)), De(str(-5)), De(str(0)), De(str(0.4))]) == De('0')
-    assert mul([De(str(5 ** 10)), De(str(10 ** 10)), De(str(3 ** 5)), De(str(0.8)) ** 5]) == De('8776000000000000000')
+    assert mul([De(str(5 ** 10)), De(str(10 ** 10)), De(str(3 ** 5)), De(str(0.8)) ** 5]) == De('7776000000000000000')
 
 
 def test_add():

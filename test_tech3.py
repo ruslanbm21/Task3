@@ -76,7 +76,7 @@ def test_time_add():
     res = [0, 0, 0]
     seed(42)
 
-    for i in range(1000):
+    for i in range(100):
         g = rand_num_arr(100, -99999999999, 99999999999)
         start = time()
         add(g)
@@ -92,7 +92,7 @@ def test_time_add():
         add(g)
         res[2] += time() - start
 
-    res = list(map(lambda x: x / 1000, res))
+    res = list(map(lambda x: x / 100, res))
     assert res[0] < time_limits['add'][100]
     assert res[1] < time_limits['add'][1000]
     assert res[2] < time_limits['add'][5000]
@@ -102,7 +102,7 @@ def test_time_mul():
     res = [0, 0, 0]
     seed(42)
 
-    for i in range(1000):
+    for i in range(100):
         g = rand_num_arr(100, -99999999999, 99999999999)
         start = time()
         mul(g)
@@ -118,7 +118,7 @@ def test_time_mul():
         mul(g)
         res[2] += time() - start
 
-    res = list(map(lambda x: x / 1000, res))
+    res = list(map(lambda x: x / 100, res))
     assert res[0] < time_limits['mul'][100]
     assert res[1] < time_limits['mul'][1000]
     assert res[2] < time_limits['mul'][5000]
@@ -128,7 +128,7 @@ def test_time_find_min():
     res = [0, 0, 0]
     seed(42)
 
-    for i in range(1000):
+    for i in range(100):
         g = rand_num_arr(100, -99999999999, 99999999999)
         start = time()
         find_min(g)
@@ -144,7 +144,7 @@ def test_time_find_min():
         find_min(g)
         res[2] += time() - start
 
-    res = list(map(lambda x: x / 1000, res))
+    res = list(map(lambda x: x / 100, res))
     assert res[0] < time_limits['fmin'][100]
     assert res[1] < time_limits['fmin'][1000]
     assert res[2] < time_limits['fmin'][5000]
@@ -154,7 +154,7 @@ def test_time_find_max():
     res = [0, 0, 0]
     seed(42)
 
-    for i in range(1000):
+    for i in range(100):
         g = rand_num_arr(100, -99999999999, 99999999999)
         start = time()
         find_max(g)
@@ -170,7 +170,7 @@ def test_time_find_max():
         find_max(g)
         res[2] += time() - start
 
-    res = list(map(lambda x: x / 1000, res))
+    res = list(map(lambda x: x / 100, res))
     assert res[0] < time_limits['fmax'][100]
     assert res[1] < time_limits['fmax'][1000]
     assert res[2] < time_limits['fmax'][5000]

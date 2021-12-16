@@ -9,9 +9,7 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python 3.10
@@ -24,7 +22,6 @@ jobs:
         pip install flake8 pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Test with pytest
-      id: test
       run: |
         pytest
       
@@ -33,6 +30,4 @@ jobs:
       with:
         to: ${{ secrets.TG_CHAT_ID }}
         token: ${{ secrets.TELEGRAM_TOKEN }}
-        args: AWGAFAAPWLG<PAOMG
-    - name: Echo
-      run: echo "${{ steps.test.outputs }}"
+        args: Всё ок, только тесты могли быть не пройдены. Не знаю, как это проверить и вывести сюда

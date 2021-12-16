@@ -1,13 +1,29 @@
-from random import randint, seed
+from random import randint, choice, seed
 from decimal import Decimal as De
-from tech3 import add, mul, find_min, find_max
+from tech3 import add, mul, find_min, find_max, read_file_to_arr
 from time import time
-from datetime import datetime
+from os import remove
 
 
-# Тест "на моё усмотрение" проверяет, что тестирование происходит не во время, отведённое на здоровый сон
-def test_correct_time_to_test():
-    assert 6 < int(str(datetime.now()).split()[1].split(':')[0]) < 23
+# Тест "на мое усмотрение" проверяет корректность функции чтения файла в массив
+def test_read_file_to_arr():
+    seps = [' ', '  ', '   ', '    ', '\n', ' \n']
+
+    with open('test_file5731.txt', 'w') as f:
+        seed(42)  # При указанном seed файл содержит все сепараторы из seps
+        rand_arr = rand_num_arr(100, -999999999999, 999999999999)
+
+        for n in rand_arr:
+            f.write(f'{n}{choice(seps)}')
+
+    arr_read_from_file = read_file_to_arr('test_file5731.txt')
+
+    assert len(arr_read_from_file) == len(rand_arr)
+
+    for i in range(len(arr_read_from_file)):
+        assert arr_read_from_file[i] == rand_arr[i]
+
+    remove('test_file5731.txt')
 
 
 def rand_num_arr(length, low, high):
@@ -50,24 +66,24 @@ def test_find_max():
 
 time_limits = {
     'add': {
-        100: 0.000027,
-        1000: 0.00027,
-        5000: 0.00135
+        100: 0.00006,
+        1000: 0.0006,
+        5000: 0.003
         },
     'mul': {
-        100: 0.00003,
-        1000: 0.0003,
-        5000: 0.0015
+        100: 0.0001,
+        1000: 0.001,
+        5000: 0.005
         },
-    'fmin': {
-        100: 0.000015,
-        1000: 0.00015,
-        5000: 0.00075
+    'min': {
+        100: 0.0015,
+        1000: 0.003,
+        5000: 0.015
         },
-    'fmax': {
-        100: 0.000015,
-        1000: 0.00015,
-        5000: 0.00075
+    'max': {
+        100: 0.0015,
+        1000: 0.003,
+        5000: 0.015
         }
 }
 
@@ -145,9 +161,9 @@ def test_time_find_min():
         res[2] += time() - start
 
     res = list(map(lambda x: x / 100, res))
-    assert res[0] < time_limits['fmin'][100]
-    assert res[1] < time_limits['fmin'][1000]
-    assert res[2] < time_limits['fmin'][5000]
+    assert res[0] < time_limits['min'][100]
+    assert res[1] < time_limits['min'][1000]
+    assert res[2] < time_limits['min'][5000]
 
 
 def test_time_find_max():
@@ -171,6 +187,6 @@ def test_time_find_max():
         res[2] += time() - start
 
     res = list(map(lambda x: x / 100, res))
-    assert res[0] < time_limits['fmax'][100]
-    assert res[1] < time_limits['fmax'][1000]
-    assert res[2] < time_limits['fmax'][5000]
+    assert res[0] < time_limits['max'][100]
+    assert res[1] < time_limits['max'][1000]
+    assert res[2] < time_limits['max'][5000]
